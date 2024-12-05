@@ -1,11 +1,18 @@
 
 import React from "react";
 
-const bioString = ["This is my first time using the chat app","Hello everyOne","best app for chatting", "God bless everyOne" ];
-const randomBio = Math.floor(Math.random() * bioString.length)
-const randomstring = bioString[randomBio];
+const generateBio = (userName) => {
+  const bioStrings = [
+    `Hello, I'm ${userName}, and I love chatting!`,
+    `This is ${userName}, always ready for a good conversation.`,
+    `I'm ${userName}, excited to connect with new people.`,
+    `${userName} here! Let's talk about anything and everything.`,
+  ];  
+  return bioStrings[Math.floor(Math.random() * bioStrings.length)];
+};
 
 const Profile = ({ user }) => {
+   const userBio = generateBio(user?.userName || "Guest");
   return (
     <>
       <div className="border rounded-lg p-4 max-w-md mx-auto bg-[rgb(19,26,35)] text-white ">
@@ -28,7 +35,7 @@ const Profile = ({ user }) => {
           </div>
           <div className="flex gap-2 mt-3">
             <h1 className="font-semibold">Bio:</h1>
-            <span>{randomstring}</span>
+            <span>{userBio}</span>
           </div>
         </div>
       </div>
