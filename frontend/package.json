@@ -32,7 +32,8 @@
     "react-scrollable-feed": "^2.0.2",
     "socket.io-client": "^4.8.1",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "whatapps-clone": "file:.."
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

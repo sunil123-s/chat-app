@@ -9,6 +9,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { createServer } from "http"
 import { Server } from "socket.io";
+import upload from "./middleware/multer.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,6 +33,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
+const uploadDir = path.resolve()
 
 app.use(express.json())
 app.use("/uploads", express.static(path.join(__dirname, "./public/uploads")));
@@ -41,14 +43,10 @@ app.use("/chat", chatRoutes)
 app.use("/user", userRoutes)
 app.use("/message", messageRoutes)
 
-app.get('/',async(req, res) => {
-   res.send("Homee")
-  })
-
-  app.get("/test", (req, res) => {
-    res.json({ message: "Server is working" });
-  });
-
+ app.use(express.static(path.join(uploadDir, "/frontend/dist")))
+ app.get("*",(req,res) => {
+  res.sendFile(path.resolve(uploadDir,"frontend", "dist", "index.html"))
+ })
 
 const server = createServer(app)
 const io = new Server(server, {
