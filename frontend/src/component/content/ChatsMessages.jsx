@@ -12,7 +12,7 @@ import ScrollChat from "./ScrollChat";
 import { io } from "socket.io-client";
 import useToggle from "@/hooks/useToggle";
 
-const EndPoint = "https://chat-app-0lfx.onrender.com";
+const EndPoint = "http://localhost:8000";
 let socket, selectedChatCompare;
 
 const ChatsMessages = () => {

@@ -45,7 +45,7 @@ const server = createServer(app)
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://chat-app-0lfx.onrender.com",
+    origin: "http://localhost:8000",
     methods: ["GET", "POST"],
   },
 });
