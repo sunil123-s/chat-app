@@ -18,14 +18,14 @@ const CreateGroupChat = () => {
   const { mutate: createGroup, isLoading: isGrouping } = useMutation({
     mutationFn: async () => {
       const res = await axios.post(
-        "/chat/creategroup",
+        "https://chat-app-0lfx.onrender.com/chat/creategroup",
         {
           groupName,
-          friendsId: selecteduser.map(user => user.id),
+          friendsId: selecteduser.map((user) => user.id),
         },
         {
           headers: {
-            "Content-Type" : "application/json",
+            "Content-Type": "application/json",
             Authorization: `Bearer ${user.token}`,
           },
         }
@@ -118,7 +118,7 @@ const CreateGroupChat = () => {
                   className="w-10 h-10 rounded-full"
                   src={
                     user?.profileImg
-                      ? `/uploads/${user.profileImg}`
+                      ? `https://chat-app-0lfx.onrender.com/uploads/${user.profileImg}`
                       : "/avatar-placeholder.png"
                   }
                   alt={user.userName}

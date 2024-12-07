@@ -11,7 +11,7 @@ const useSearch = () => {
       queryKey: ["search", isSearch],
       queryFn: async () => {
         const res = await axios.get(
-          `/user/searchUser?search=${isSearch}`,
+          `https://chat-app-0lfx.onrender.com/user/searchUser?search=${isSearch}`,
           {
             headers: {
               Authorization: `Bearer ${user?.token}`,
