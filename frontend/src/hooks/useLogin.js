@@ -5,7 +5,7 @@ export const useLogin = () => {
     const {mutate:login,isLoading,isError,error} = useMutation({
         mutationFn: async(formdata) => {
             const res = await axios.post(
-              "https://chat-app-0lfx.onrender.com/auth/login",
+              "/auth/login",
               formdata
             );
           const response = res.data;

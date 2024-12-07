@@ -15,7 +15,7 @@ export const useSignup = () => {
            }
 
           const res = await axios.post(
-            "https://chat-app-0lfx.onrender.com/auth/signup",
+            "/auth/signup",
             data,
             {
               headers: {

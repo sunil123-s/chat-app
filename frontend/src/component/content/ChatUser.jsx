@@ -24,14 +24,11 @@
     const { data, isLoading } = useQuery({
       queryKey: ["chatdata"],
       queryFn: async () => {
-        const res = await axios.get(
-          "https://chat-app-0lfx.onrender.com/chat/allmessages",
-          {
-            headers: {
-              Authorization: `Bearer ${user.token}`,
-            },
-          }
-        );
+        const res = await axios.get("/chat/allmessages", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         return res.data;
       },
       refetchOnWindowFocus: false,

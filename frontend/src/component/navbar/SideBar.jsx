@@ -16,7 +16,7 @@ const SideBar = ({ isOpen, onClose }) => {
   const { mutate: createChat } = useMutation({
     mutationFn: async (friendsId) => {
       const res = await axios.post(
-        "https://chat-app-0lfx.onrender.com/chat/creatChat",
+        "/chat/creatChat",
         { friendsId },
         {
           headers: {
@@ -88,7 +88,7 @@ const SideBar = ({ isOpen, onClose }) => {
                   className="w-10 h-10 rounded-full"
                   src={
                     user?.profileImg
-                      ? `https://chat-app-0lfx.onrender.com/uploads/${user?.profileImg}`
+                      ? `/uploads/${user?.profileImg}`
                       : "/avatar-placeholder.png"
                   }
                   alt={user?.fullName}

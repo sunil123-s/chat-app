@@ -18,7 +18,7 @@ const GroupProfile = ({group}) => {
   const {mutate:renameGroup} = useMutation({
     mutationFn: async() => {
       const res = await axios.put(
-        "https://chat-app-0lfx.onrender.com/chat/rename",
+        "/chat/rename",
         {
           chatName: newGroupName,
           id: group.id,
@@ -50,7 +50,7 @@ const GroupProfile = ({group}) => {
    const { mutate: addnewUser } = useMutation({
      mutationFn: async (user1) => {
        const res = await axios.put(
-         "https://chat-app-0lfx.onrender.com/chat/groupadd",
+         "/chat/groupadd",
          {
            id: selectedChat.id,
            newusersId: user1.id,
@@ -88,7 +88,7 @@ const GroupProfile = ({group}) => {
   const { mutate: remove } = useMutation({
     mutationFn: async (user1) => {
       const res = await axios.put(
-        "https://chat-app-0lfx.onrender.com/chat/groupremove",
+        "/chat/groupremove",
         {
           id: selectedChat.id,
           removeUserid: user1.id,
@@ -185,7 +185,7 @@ const GroupProfile = ({group}) => {
                 className="w-10 h-10 rounded-full"
                 src={
                   user?.profileImg
-                    ? `https://chat-app-0lfx.onrender.com/uploads/${user.profileImg}`
+                    ? `/uploads/${user.profileImg}`
                     : "/avatar-placeholder.png"
                 }
                 alt={user.userName}

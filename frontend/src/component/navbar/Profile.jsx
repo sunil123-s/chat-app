@@ -22,7 +22,7 @@ const Profile = ({ user }) => {
             className="rounded-full w-24 h-24 sm:w-32 sm:h-32"
             src={
               user?.profileImg
-                ? `https://chat-app-0lfx.onrender.com/uploads/${user?.profileImg}`
+                ? `/uploads/${user?.profileImg}`
                 : "/avatar-placeholder.png"
             }
             alt={user ? user.fullName[0] : "G"}

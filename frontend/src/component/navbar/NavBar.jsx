@@ -48,7 +48,7 @@ const NavBar = () => {
               className="rounded-full w-8 h-8 sm:w-10 sm:h-10"
               src={
                 user?.profileImg
-                  ? `https://chat-app-0lfx.onrender.com/uploads/${user?.profileImg}`
+                  ? `/uploads/${user?.profileImg}`
                   : "/avatar-placeholder.png"
               }
               alt={user ? user.fullName[0].toUpperCase() : "G"}

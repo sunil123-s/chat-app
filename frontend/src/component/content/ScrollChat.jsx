@@ -31,7 +31,7 @@ const ScrollChat = ({ message, loggedInUser }) => {
                     className="rounded-full w-8 h-8 md:w-10 md:h-10"
                     src={
                       mess?.sender.profileImg
-                        ? `https://chat-app-0lfx.onrender.com/uploads/${mess.sender.profileImg}`
+                        ? `/uploads/${mess.sender.profileImg}`
                         : "/avatar-placeholder.png"
                     }
                     alt={`${mess.sender.userName}'s profile`}
