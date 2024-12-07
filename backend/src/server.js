@@ -4,7 +4,6 @@ import chatRoutes from "./routes/chatRoute.js"
 import authRoutes from "./routes/authRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 import messageRoutes from "./routes/messageRoutes.js"
-import cors from "cors"
 import path from "path";
 import { fileURLToPath } from "url";
 import { createServer } from "http"
@@ -16,16 +15,6 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const PORT = process.env.PORT || 8000 
 const app = express()
-
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173",
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     allowedHeaders: ["Content-Type", "Authorization","Accept"],
-//     credentials: true,
-//   })
-// );
-
 
 app.use((err, req, res, next) => {
   console.error("Error:", err);
@@ -56,7 +45,7 @@ const server = createServer(app)
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://chat-app-0lfx.onrender.com",
     methods: ["GET", "POST"],
   },
 });
