@@ -29,7 +29,11 @@ const ScrollChat = ({ message, loggedInUser }) => {
                 <div className="flex items-center mr-2">
                   <img
                     className="rounded-full w-8 h-8 md:w-10 md:h-10"
-                    src="https://github.com/shadcn.png"
+                    src={
+                      mess?.sender.profileImg
+                        ? `/uploads/${mess.sender.profileImg}`
+                        : "/avatar-placeholder.png"
+                    }
                     alt={`${mess.sender.userName}'s profile`}
                   />
                 </div>

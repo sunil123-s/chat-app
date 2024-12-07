@@ -118,7 +118,7 @@ const CreateGroupChat = () => {
                   className="w-10 h-10 rounded-full"
                   src={
                     user?.profileImg
-                      ? `http://localhost:8000/uploads/${user.profileImg}`
+                      ? `/uploads/${user.profileImg}`
                       : "/avatar-placeholder.png"
                   }
                   alt={user.userName}

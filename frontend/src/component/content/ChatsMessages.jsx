@@ -98,6 +98,7 @@ const ChatsMessages = () => {
           },
         }
       );
+      console.log(res.data)
       return res.data;
     },
     enabled: !!selectedChat?.id,
@@ -131,6 +132,7 @@ const ChatsMessages = () => {
           },
         }
       );
+      console.log(res.data)
       return res.data;
     },
     onSuccess: (data) => {
