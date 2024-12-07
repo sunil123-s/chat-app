@@ -15,7 +15,7 @@ export const useSignup = () => {
            }
 
           const res = await axios.post(
-            "http://localhost:8000/auth/signup",
+            "/auth/signup",
             data,
             {
               headers: {

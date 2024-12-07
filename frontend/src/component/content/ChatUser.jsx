@@ -24,7 +24,7 @@
     const { data, isLoading } = useQuery({
       queryKey: ["chatdata"],
       queryFn: async () => {
-        const res = await axios.get("http://localhost:8000/chat/allmessages", {
+        const res = await axios.get("/chat/allmessages", {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

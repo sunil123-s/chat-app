@@ -11,7 +11,7 @@ const useSearch = () => {
       queryKey: ["search", isSearch],
       queryFn: async () => {
         const res = await axios.get(
-          `http://localhost:8000/user/searchUser?search=${isSearch}`,
+          `/user/searchUser?search=${isSearch}`,
           {
             headers: {
               Authorization: `Bearer ${user?.token}`,

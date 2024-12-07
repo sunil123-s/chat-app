@@ -17,14 +17,18 @@ const GroupProfile = ({group}) => {
 
   const {mutate:renameGroup} = useMutation({
     mutationFn: async() => {
-      const res = await axios.put("http://localhost:8000/chat/rename", {
-        chatName: newGroupName,
-        id:group.id
-      },{
-        headers:{
-          Authorization: `Bearer ${user.token}`
+      const res = await axios.put(
+        "/chat/rename",
+        {
+          chatName: newGroupName,
+          id: group.id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
         }
-      });
+      );
       return res.data
     },
     onSuccess:(data) => {
@@ -46,7 +50,7 @@ const GroupProfile = ({group}) => {
    const { mutate: addnewUser } = useMutation({
      mutationFn: async (user1) => {
        const res = await axios.put(
-         "http://localhost:8000/chat/groupadd",
+         "/chat/groupadd",
          {
            id: selectedChat.id,
            newusersId: user1.id,
@@ -84,7 +88,7 @@ const GroupProfile = ({group}) => {
   const { mutate: remove } = useMutation({
     mutationFn: async (user1) => {
       const res = await axios.put(
-        "http://localhost:8000/chat/groupremove",
+        "/chat/groupremove",
         {
           id: selectedChat.id,
           removeUserid: user1.id,

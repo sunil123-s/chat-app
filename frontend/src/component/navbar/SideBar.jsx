@@ -16,7 +16,7 @@ const SideBar = ({ isOpen, onClose }) => {
   const { mutate: createChat } = useMutation({
     mutationFn: async (friendsId) => {
       const res = await axios.post(
-        "http://localhost:8000/chat/creatChat",
+        "/chat/creatChat",
         { friendsId },
         {
           headers: {

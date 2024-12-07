@@ -18,7 +18,7 @@ const CreateGroupChat = () => {
   const { mutate: createGroup, isLoading: isGrouping } = useMutation({
     mutationFn: async () => {
       const res = await axios.post(
-        "http://localhost:8000/chat/creategroup",
+        "/chat/creategroup",
         {
           groupName,
           friendsId: selecteduser.map(user => user.id),

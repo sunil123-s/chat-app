@@ -17,14 +17,14 @@ dotenv.config();
 const PORT = process.env.PORT || 8000 
 const app = express()
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization","Accept"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization","Accept"],
+//     credentials: true,
+//   })
+// );
 
 
 app.use((err, req, res, next) => {
@@ -32,7 +32,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
-const uploadDir = path.resolve()
 
 app.use(express.json())
 app.use("/uploads", express.static(path.join(__dirname, "./public/uploads")));
@@ -42,12 +41,18 @@ app.use("/chat", chatRoutes)
 app.use("/user", userRoutes)
 app.use("/message", messageRoutes)
 
- app.use(express.static(path.join(uploadDir, "/frontend/dist")))
- app.get("*",(req,res) => {
-  res.sendFile(path.resolve(uploadDir,"frontend", "dist", "index.html"))
- })
+const uploadDir = path.resolve()
+
+ if(process.env.NODE_ENV === "production") {
+   app.use(express.static(path.join(uploadDir, "/frontend/dist")))
+   app.get("*",(req,res) => {
+    res.sendFile(path.resolve(uploadDir,"frontend", "dist", "index.html"))
+   })
+ }
+
 
 const server = createServer(app)
+
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
@@ -60,23 +65,19 @@ io.on("connection", (socket) => {
 
   socket.on("setup", (userData) => {
         if (!userData || !userData.id) {
-          console.error("Invalid user data during setup");
           return;
         }
         
-      console.log("User setup:", userData);
     socket.userData = userData; 
     socket.join(userData.id);
     socket.emit("connected"); // Add this line
   });
 
   socket.on("join chat", (room) => {
-        console.log("User joined room:", room);
     socket.join(room);
   });
 
   socket.on("new message", (newMessageReceived) => {
-    console.log("New message received:", newMessageReceived);
     const chat = newMessageReceived.chat;
 
     if (!chat.users) {
@@ -95,7 +96,6 @@ io.on("connection", (socket) => {
     
   socket.on("disconnect",() => {
     if(socket.userData){
-       console.log(`User disconnected: ${socket.userData.id}`);
         socket.leave(socket.userData.id); 
     }else{
       console.log("User disconnected without setup");
