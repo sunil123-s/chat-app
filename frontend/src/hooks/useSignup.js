@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios";
+import BaseUrl from "./useAxios";
 
 
 export const useSignup = () => {
@@ -15,7 +16,7 @@ export const useSignup = () => {
            }
 
           const res = await axios.post(
-            "/auth/signup",
+            `${BaseUrl}/auth/signup`,
             data,
             {
               headers: {

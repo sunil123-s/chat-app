@@ -6,6 +6,7 @@
   import { getuser } from "@/hooks/GetUser";
   import CreateGroupChat from "../GroupChat/CreateGroupChat";
   import useToggle from "@/hooks/useToggle";
+  import BaseUrl from "@/hooks/useAxios";
 
   const ChatUser = () => {
     const [loggedUser, setLoggedUser] = useState();
@@ -24,7 +25,7 @@
     const { data, isLoading } = useQuery({
       queryKey: ["chatdata"],
       queryFn: async () => {
-        const res = await axios.get("/chat/allmessages", {
+        const res = await axios.get(`${BaseUrl}/chat/allmessages`, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },

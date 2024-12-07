@@ -6,6 +6,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { IoMdClose } from "react-icons/io";
 import useSearch from '@/hooks/useSearch'
+import BaseUrl from '@/hooks/useAxios'
 
 const CreateGroupChat = () => {
   const [groupName, setgroupName] = useState("");
@@ -18,7 +19,7 @@ const CreateGroupChat = () => {
   const { mutate: createGroup, isLoading: isGrouping } = useMutation({
     mutationFn: async () => {
       const res = await axios.post(
-        "/chat/creategroup",
+        `${BaseUrl}/chat/creategroup`,
         {
           groupName,
           friendsId: selecteduser.map(user => user.id),
@@ -118,7 +119,7 @@ const CreateGroupChat = () => {
                   className="w-10 h-10 rounded-full"
                   src={
                     user?.profileImg
-                      ? `/uploads/${user.profileImg}`
+                      ? `${BaseUrl}/uploads/${user.profileImg}`
                       : "/avatar-placeholder.png"
                   }
                   alt={user.userName}

@@ -1,5 +1,5 @@
 
-
+import BaseUrl from "@/hooks/useAxios";
 import React, { useRef, useEffect } from "react";
 
 const ScrollChat = ({ message, loggedInUser }) => {
@@ -17,7 +17,7 @@ const ScrollChat = ({ message, loggedInUser }) => {
           const isLastMessageSentByUser =
             index === message.length - 1 ||
             message[index + 1].senderId !== mess.senderId;
-
+         
           return (
             <div
               key={index}
@@ -28,15 +28,18 @@ const ScrollChat = ({ message, loggedInUser }) => {
               {!isSentByLoggedInUser && isLastMessageSentByUser && (
                 <div className="flex items-center mr-2">
                   <img
-                    className="rounded-full w-8 h-8 md:w-10 md:h-10"
+                    className="rounded-full w-8 h-8 md:w-9 md:h-9 self-start"
                     src={
                       mess?.sender.profileImg
-                        ? `/uploads/${mess.sender.profileImg}`
+                        ? `${BaseUrl}/uploads/${mess.sender.profileImg}`
                         : "/avatar-placeholder.png"
                     }
                     alt={`${mess.sender.userName}'s profile`}
                   />
                 </div>
+              )}
+              {!isSentByLoggedInUser && !isLastMessageSentByUser && (
+                <div className="w-9 mr-2"></div>
               )}
               <div
                 className={`max-w-[75%] md:max-w-[60%] lg:max-w-[50%] rounded-lg p-3 text-sm break-words ${
