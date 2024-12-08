@@ -33,18 +33,24 @@ app.use("/message", messageRoutes)
 const uploadDir = path.resolve()
 
  if(process.env.NODE_ENV === "production") {
-   app.use(express.static(path.join(uploadDir, "/frontend/dist")))
+  //  app.use(express.static(path.join(uploadDir, "/frontend/dist")))
+   app.use(express.static(path.join(__dirname, "../../frontend/dist")));
    app.get("*",(req,res) => {
-    res.sendFile(path.resolve(uploadDir,"frontend", "dist", "index.html"))
+    // res.sendFile(path.resolve(uploadDir,"frontend", "dist", "index.html"))
+    res.sendFile(path.join(__dirname, "../../frontend/dist", "index.html"));
    })
  }
 
 const server = createServer(app)
 
+const BaseUrl = process.env.NODE_ENV === "production" 
+  ? "" // Empty string for same-domain requests
+  : "http://localhost:8000"
+
 const io = new Server(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "http://localhost:8000",
+    origin:BaseUrl,
     methods: ["GET", "POST"],
   },
 });
