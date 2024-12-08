@@ -6,7 +6,7 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 import toast from "react-hot-toast";
 import useSearch from "@/hooks/useSearch";
-import BaseUrl from "@/hooks/useAxios";
+// import BaseUrl from "@/hooks/useAxios";
 
 const SideBar = ({ isOpen, onClose }) => {
   const { user, setselectedChat, chat, setchat } = ChatState();
@@ -17,7 +17,7 @@ const SideBar = ({ isOpen, onClose }) => {
   const { mutate: createChat } = useMutation({
     mutationFn: async (friendsId) => {
       const res = await axios.post(
-        `${BaseUrl}/chat/creatChat`,
+        `/chat/creatChat`,
         { friendsId },
         {
           headers: {
@@ -89,7 +89,7 @@ const SideBar = ({ isOpen, onClose }) => {
                   className="w-10 h-10 rounded-full"
                   src={
                     user?.profileImg
-                      ? `${BaseUrl}/uploads/${user?.profileImg}`
+                      ? `/uploads/${user?.profileImg}`
                       : "/avatar-placeholder.png"
                   }
                   alt={user?.fullName}

@@ -1,5 +1,4 @@
 
-import BaseUrl from "@/hooks/useAxios";
 import React from "react";
 
 const generateBio = (userName) => {
@@ -23,7 +22,7 @@ const Profile = ({ user }) => {
             className="rounded-full w-24 h-24 sm:w-32 sm:h-32"
             src={
               user?.profileImg
-                ? `${BaseUrl}/uploads/${user?.profileImg}`
+                ? `/uploads/${user?.profileImg}`
                 : "/avatar-placeholder.png"
             }
             alt={user ? user.fullName[0] : "G"}

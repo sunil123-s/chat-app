@@ -6,7 +6,7 @@ import SideBar from "./SideBar";
 import Profile from "./Profile";
 import { useNavigate } from "react-router-dom";
 import useToggle from "@/hooks/useToggle";
-import BaseUrl from "@/hooks/useAxios";
+
 
 const NavBar = () => {
 
@@ -49,7 +49,7 @@ const NavBar = () => {
               className="rounded-full w-8 h-8 sm:w-10 sm:h-10"
               src={
                 user?.profileImg
-                  ? `${BaseUrl}/uploads/${user?.profileImg}`
+                  ? `/uploads/${user?.profileImg}`
                   : "/avatar-placeholder.png"
               }
               alt={user ? user.fullName[0].toUpperCase() : "G"}

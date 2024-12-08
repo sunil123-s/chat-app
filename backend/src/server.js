@@ -39,7 +39,6 @@ const uploadDir = path.resolve()
    })
  }
 
-
 const server = createServer(app)
 
 const io = new Server(server, {

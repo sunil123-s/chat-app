@@ -6,7 +6,6 @@ import React,{useState} from 'react'
 import toast from 'react-hot-toast';
 import { IoMdClose } from "react-icons/io";
 import useSearch from '@/hooks/useSearch';
-import BaseUrl from '@/hooks/useAxios';
 
 const GroupProfile = ({group}) => {
   const [newGroupName, setnewGroupName] = useState("")
@@ -19,7 +18,7 @@ const GroupProfile = ({group}) => {
   const {mutate:renameGroup} = useMutation({
     mutationFn: async() => {
       const res = await axios.put(
-        `${BaseUrl}/chat/rename`,
+        `/chat/rename`,
         {
           chatName: newGroupName,
           id: group.id,
@@ -51,7 +50,7 @@ const GroupProfile = ({group}) => {
    const { mutate: addnewUser } = useMutation({
      mutationFn: async (user1) => {
        const res = await axios.put(
-         `${BaseUrl}/chat/groupadd`,
+         `/chat/groupadd`,
          {
            id: selectedChat.id,
            newusersId: user1.id,
@@ -89,7 +88,7 @@ const GroupProfile = ({group}) => {
   const { mutate: remove } = useMutation({
     mutationFn: async (user1) => {
       const res = await axios.put(
-        `${BaseUrl}/chat/groupremove`,
+        `/chat/groupremove`,
         {
           id: selectedChat.id,
           removeUserid: user1.id,
@@ -186,7 +185,7 @@ const GroupProfile = ({group}) => {
                 className="w-10 h-10 rounded-full"
                 src={
                   user?.profileImg
-                    ? `${BaseUrl}/uploads/${user.profileImg}`
+                    ? `/uploads/${user.profileImg}`
                     : "/avatar-placeholder.png"
                 }
                 alt={user.userName}

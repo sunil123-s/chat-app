@@ -11,9 +11,8 @@ import axios from "axios";
 import ScrollChat from "./ScrollChat";
 import { io } from "socket.io-client";
 import useToggle from "@/hooks/useToggle";
-import BaseUrl from "@/hooks/useAxios";
 
-const EndPoint = `${BaseUrl}`
+const EndPoint = "http://localhost:8000"
 let socket, selectedChatCompare;
 
 const ChatsMessages = () => {
@@ -92,7 +91,7 @@ const ChatsMessages = () => {
     queryFn: async () => {
       if (!selectedChat?.id) return [];
       const res = await axios.get(
-        `${BaseUrl}/message/${selectedChat.id}`,
+        `/message/${selectedChat.id}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -124,7 +123,7 @@ const ChatsMessages = () => {
   const { mutate: sending } = useMutation({
     mutationFn: async (messageData) => {
       const res = await axios.post(
-        `${BaseUrl}/message/send`,
+        `/message/send`,
         messageData,
         {
           headers: {

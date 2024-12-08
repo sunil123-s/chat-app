@@ -1,5 +1,4 @@
 
-import BaseUrl from "@/hooks/useAxios";
 import React, { useRef, useEffect } from "react";
 
 const ScrollChat = ({ message, loggedInUser }) => {
@@ -31,7 +30,7 @@ const ScrollChat = ({ message, loggedInUser }) => {
                     className="rounded-full w-8 h-8 md:w-9 md:h-9 self-start"
                     src={
                       mess?.sender.profileImg
-                        ? `${BaseUrl}/uploads/${mess.sender.profileImg}`
+                        ? `/uploads/${mess.sender.profileImg}`
                         : "/avatar-placeholder.png"
                     }
                     alt={`${mess.sender.userName}'s profile`}
