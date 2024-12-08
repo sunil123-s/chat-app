@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon backend/src/server.js",
     "dev": " node backend/src/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend && npx prisma generate --schema=./backend/src/prisma/schema.prisma"
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend && npx prisma generate --schema=./backend/src/prisma/schema.prisma",
+    "postbuild": "mv frontend/dist backend/src/public"
   },
   "author": "sunil kumar",
   "license": "ISC",
