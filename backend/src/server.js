@@ -43,9 +43,10 @@ const uploadDir = path.resolve()
 
 const server = createServer(app)
 
-const BaseUrl = process.env.NODE_ENV === "production" 
-  ? "" // Empty string for same-domain requests
-  : "http://localhost:8000"
+const BaseUrl =
+  process.env.NODE_ENV !== "development"
+    ? "" // Empty string for same-domain requests
+    : "http://localhost:8000";
 
 const io = new Server(server, {
   pingTimeout: 60000,
