@@ -1,7 +1,7 @@
 import { ChatState } from "../../context/ChatProvider";
 import { FaEye } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
-import { getuser, getFullUser } from "../../hooks/GetUser";
+import apiUrl,{ getuser, getFullUser} from "../../hooks/GetUser";
 import Profile from "../navbar/Profile";
 import GroupProfile from "../GroupChat/GroupProfile";
 import Spinner from "../util/Spinner";
@@ -9,9 +9,9 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import ScrollChat from "./ScrollChat";
 import { io } from "socket.io-client";
-import useToggle from "../../hooks/useToggle";
+import useToggle from "../../hooks/useToggle"
 
-const EndPoint = process.env.REACT_APP_BACKEND_URL;
+const EndPoint = apiUrl;
 console.log("endpoint",EndPoint)
 let socket;
 
@@ -91,7 +91,7 @@ const ChatsMessages = () => {
     queryFn: async () => {
       if (!selectedChat?.id) return [];
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/message/${selectedChat.id}`,
+        `${apiUrl}/message/${selectedChat.id}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -118,16 +118,12 @@ const ChatsMessages = () => {
   // Sending messages
   const { mutate: sending } = useMutation({
     mutationFn: async (messageData) => {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/message/send`,
-        messageData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      const res = await axios.post(`${apiUrl}/message/send`, messageData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
         setNewMessage("");
         socket.emit("new message", res.data);
         setMessage((prev) => [...prev, res.data]);

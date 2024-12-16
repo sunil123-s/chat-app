@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios";
+import apiUrl from "./GetUser";
 
 export const useSignup = () => {
 
@@ -15,7 +16,7 @@ export const useSignup = () => {
            }
 
           const res = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/auth/signup`,
+            `${apiUrl}/auth/signup`,
             data,
             {
               headers: {

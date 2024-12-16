@@ -2,6 +2,7 @@ import { ChatState } from "../context/ChatProvider"
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { useState } from "react"
+import apiUrl from "./GetUser"
 // import BaseUrl from "./useAxios"
 
 const useSearch = () => {
@@ -12,7 +13,7 @@ const useSearch = () => {
       queryKey: ["search", isSearch],
       queryFn: async () => {
         const res = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/user/searchUser?search=${isSearch}`,
+          `${apiUrl}/user/searchUser?search=${isSearch}`,
           {
             headers: {
               Authorization: `Bearer ${user?.token}`,

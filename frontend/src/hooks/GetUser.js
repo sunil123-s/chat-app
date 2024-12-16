@@ -14,3 +14,9 @@ export const getuser = (loggedInUser, chatUsers) => {
     const otherUser = users.find((u) => u.id !== user.id);
     return otherUser ? otherUser : "Unknown User";
   };
+
+  
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+const apiUrl = backendUrl.endsWith("/") ? backendUrl.slice(0, -1) : backendUrl;
+
+export default apiUrl;

@@ -6,6 +6,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { IoMdClose } from "react-icons/io";
 import useSearch from '../../hooks/useSearch'
+import apiUrl from '../../hooks/GetUser'
 
 const CreateGroupChat = () => {
   const [groupName, setgroupName] = useState("");
@@ -18,7 +19,7 @@ const CreateGroupChat = () => {
   const { mutate: createGroup, isLoading: isGrouping } = useMutation({
     mutationFn: async () => {
       const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/chat/creategroup`,
+        `${apiUrl}/chat/creategroup`,
         {
           groupName,
           friendsId: selecteduser.map((user) => user.id),

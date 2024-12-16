@@ -6,6 +6,7 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 import toast from "react-hot-toast";
 import useSearch from "../../hooks/useSearch";
+import apiUrl from "../../hooks/GetUser";
 
 const SideBar = ({ isOpen, onClose }) => {
   const { user, setselectedChat, chat, setchat } = ChatState();
@@ -16,7 +17,7 @@ const SideBar = ({ isOpen, onClose }) => {
   const { mutate: createChat } = useMutation({
     mutationFn: async (friendsId) => {
       const res = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/chat/creatChat`,
+        `${apiUrl}/chat/creatChat`,
         { friendsId },
         {
           headers: {

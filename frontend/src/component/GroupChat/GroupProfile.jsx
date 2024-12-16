@@ -6,6 +6,7 @@ import React,{useState} from 'react'
 import toast from 'react-hot-toast';
 import { IoMdClose } from "react-icons/io";
 import useSearch from '../../hooks/useSearch';
+import apiUrl from '../../hooks/GetUser';
 
 const GroupProfile = ({group}) => {
   const [newGroupName, setnewGroupName] = useState("")
@@ -18,7 +19,7 @@ const GroupProfile = ({group}) => {
   const {mutate:renameGroup} = useMutation({
     mutationFn: async() => {
       const res = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/chat/rename`,
+        `${apiUrl}/chat/rename`,
         {
           chatName: newGroupName,
           id: group.id,
@@ -50,7 +51,7 @@ const GroupProfile = ({group}) => {
    const { mutate: addnewUser } = useMutation({
      mutationFn: async (user1) => {
        const res = await axios.put(
-         `${process.env.REACT_APP_BACKEND_URL}/chat/groupadd`,
+         `${apiUrl}/chat/groupadd`,
          {
            id: selectedChat.id,
            newusersId: user1.id,
@@ -88,7 +89,7 @@ const GroupProfile = ({group}) => {
   const { mutate: remove } = useMutation({
     mutationFn: async (user1) => {
       const res = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/chat/groupremove`,
+        `${apiUrl}/chat/groupremove`,
         {
           id: selectedChat.id,
           removeUserid: user1.id,

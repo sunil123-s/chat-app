@@ -16,6 +16,13 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+app.use((req,res,next) => {
+  if(req.url.endsWith("/")){
+    return res.redirect(301, req.url.slice(0, -1))
+  }
+  next();
+})
+
 app.use((err, req, res, next) => {
   console.error("Error:", err);
   res.status(500).json({ error: err.message });

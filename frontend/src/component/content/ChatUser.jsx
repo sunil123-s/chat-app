@@ -2,7 +2,7 @@ import { ChatState } from "../../context/ChatProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useState } from "react";
-import { getuser } from "../../hooks/GetUser";
+import apiUrl,{ getuser } from "../../hooks/GetUser";
 import CreateGroupChat from "../GroupChat/CreateGroupChat";
 import useToggle from "../../hooks/useToggle";
 
@@ -25,7 +25,7 @@ const ChatUser = () => {
     queryFn: async () => {
       console.log("Starting queryFn...");
       const res = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/chat/allmessages`,
+        `${apiUrl}/chat/allmessages`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
